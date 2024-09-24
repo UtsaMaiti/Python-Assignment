@@ -1,0 +1,38 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+sampling_rate = 1000
+frequency = 5   
+amplitude = 1
+duration = 1
+
+# Creating the sine wave
+sine_wave = amplitude * np.sin(2 * np.pi * frequency * np.linspace(0, duration, sampling_rate * duration, endpoint=False))
+
+# Performing FFT
+magnitude_fft = np.abs(np.fft.fft(sine_wave))
+frequency_fft = np.fft.fftfreq(len(magnitude_fft), 1/sampling_rate)
+
+# Creating the frequency bins and magnitudes for positive frequencies
+positive_frequencies = frequency_fft[:len(frequency_fft)//2]
+positive_magnitudes = magnitude_fft[:len(magnitude_fft)//2]
+
+# Plotting
+plt.figure(figsize=(12, 6))
+
+plt.subplot(2, 1, 1)
+plt.plot(np.linspace(0, duration, sampling_rate * duration, endpoint=False), sine_wave, color='pink')
+plt.title('Original Sine Wave')
+plt.xlabel('Time [s]')
+plt.ylabel('Amplitude')
+plt.grid()
+
+plt.subplot(2, 1, 2)
+plt.plot(positive_frequencies, positive_magnitudes, color='purple')
+plt.title('Frequency Spectrum')
+plt.xlabel('Frequency [Hz]')
+plt.ylabel('Magnitude')
+plt.grid()
+
+plt.tight_layout()
+plt.show()
