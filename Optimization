@@ -1,0 +1,7 @@
+ import numpy as np
+ from scipy.optimize import minimize
+ def f(x):
+  return (x-3)**2+2
+result=minimize(f,0)
+print("The Optimized value is : ",result.fun)
+print("The value of x which optimizes the function is:", result.x)
