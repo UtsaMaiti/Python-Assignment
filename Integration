@@ -1,0 +1,6 @@
+from scipy import integrate
+def f(x):
+  return x**2
+result,error=integrate.quad(f,0,5)
+print("The Integration value is : ",result)
+print("The Error value is : ",error)
