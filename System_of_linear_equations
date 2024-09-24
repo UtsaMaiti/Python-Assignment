@@ -1,0 +1,5 @@
+import numpy as np
+m=np.array([[2,3],[4,1]])
+n=np.array([5,6])
+result=np.linalg.solve(m,n)
+print("The solution of the system of equations : ",result)
